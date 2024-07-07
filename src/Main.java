@@ -49,8 +49,14 @@ public class Main {
                        cus_id = Integer.parseInt(br.readLine());
                        System.out.print("Enter Product id: ");
                        productId = br.readLine();
+                       if(Validation.validateProductId(productId)){
+                           throw new Exception("Invalid Product Id");
+                       }
                        System.out.print("Enter Order Id: ");
                        orderId = br.readLine();
+                       if(!Validation.validateOrderId(orderId)){
+                           throw new Exception("Invalid Order Id");
+                       }
                        System.out.print("Enter Quantity: ");
                        int quantity = Integer.parseInt(br.readLine());
 
