@@ -11,7 +11,9 @@ import java.io.BufferedReader;
 import java.io.IOError;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -70,7 +72,6 @@ public class Main {
                        ProductThread pt = new ProductThread(o1, p1, od1);
                        OrderDetailThread odt = new OrderDetailThread(o1, p1, od1);
                        StatusUpdate sp = new StatusUpdate(o1, p1, od1);
-
                        ot.orders = orders;
                        odt.orderDetails = orderDetails;
 
@@ -82,16 +83,37 @@ public class Main {
                        try {
                            t1.start();
                            t1.join();
+
                            t2.start();
                            t2.join();
+
                            t3.start();
                            t3.join();
+
                            t4.start();
                            t4.join();
                        }catch (IOError e){
                            System.out.println(e.getMessage());
                        }
                         orderDetails.forEach(System.out::println);
+                       Map<String, Order> stringOrderMap = new HashMap<String, Order>();
+                       orders.stream()
+                               .filter(o->o.getId().equals(o1.getId()))
+                               .forEach(o->{
+                                   stringOrderMap.put(o.getId(), o);
+                               });
+                       System.out.println(stringOrderMap);
+                       Map<String, OrderDetail> stringOrderDetailMap = new HashMap<>();
+                       orderDetails.stream()
+                                       .filter(o->o.getId() == od1.getId())
+                                               .forEach(o->{
+                                                   stringOrderDetailMap.put(o.getOrder_id(), o);
+                                               });
+                       System.out.println(stringOrderDetailMap);
+
+                       data.saveOrder(stringOrderMap);
+                       data.saveOrderDetail(stringOrderDetailMap);
+                       data.updateQuantity(p1);
                        break;
                    case 2:
                        break;

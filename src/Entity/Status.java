@@ -1,7 +1,7 @@
 package Entity;
 
 public enum Status {
-    PENDING("Chờ xử lý"),COMPLETE("Đã hoàn thành"),CANCEL("Hủy Đơn"), PAID("Chờ Thanh Toán");
+    PENDING("PENDING"),COMPLETE("COMPLETE"),CANCEL("CANCEL"), PAID("PAID");
     private String label;
 
     Status(String label){

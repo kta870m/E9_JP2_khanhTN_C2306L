@@ -2,7 +2,7 @@ package Global;
 
 public class Validation {
     public static boolean validateProductId(String productId) {
-        String pattern = "^(MS|NE|SE)[0-9]{7}$";
+        String pattern = "^(MS|NE|SE)[0-9]{6}$";
         return productId.matches(pattern);
     }
 
@@ -12,12 +12,12 @@ public class Validation {
     }
 
     public static boolean validateCustomerName(String customerName) {
-        String pattern = "^[a-zA-Z ]?{3,50}+$";
+        String pattern = "^[a-zA-Z ]{3,50}+$";
         return  customerName.matches(pattern);
     }
 
     public static boolean validateOrderId(String orderId) {
-        String pattern = "^ORDPM[0-9]{8}$";
+        String pattern = "^ORDPM[0-9]{4}$";
         return orderId.matches(pattern);
     }
 
