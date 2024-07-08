@@ -14,9 +14,11 @@ public class ProductThread extends ShopManagement implements Runnable{
     }
 
     public Product updateProductQuantity(){
-        super.getProduct().setQuantity(
-                super.getProduct().getQuantity() - super.getOrderDetail().getQuantity()
-        );
+        if(super.getOrderDetail().getQuantity() <= super.getProduct().getQuantity()) {
+            super.getProduct().setQuantity(
+                    super.getProduct().getQuantity() - super.getOrderDetail().getQuantity()
+            );
+        }
         return super.getProduct();
     }
 

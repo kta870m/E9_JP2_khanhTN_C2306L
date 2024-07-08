@@ -2,7 +2,7 @@ package Global;
 
 public class Validation {
     public static boolean validateProductId(String productId) {
-        String pattern = "^(MS|NE|SE)[0-9]{6}$";
+        String pattern = "^(MS|NE|SE)[0-9]{7}$";
         return productId.matches(pattern);
     }
 
