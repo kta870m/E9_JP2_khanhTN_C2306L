@@ -28,6 +28,7 @@ public class Main {
         ps.productList = products;
 
         try{
+
            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
            int choice;
            int cus_id;
@@ -37,6 +38,7 @@ public class Main {
            Thread t2;
            Thread t3;
            Thread t4;
+
             int detail_id = orderDetails.size() + 1;
            do {
                System.out.println("1 - Insert New Order");
@@ -49,7 +51,7 @@ public class Main {
                        cus_id = Integer.parseInt(br.readLine());
                        System.out.print("Enter Product id: ");
                        productId = br.readLine();
-                       if(Validation.validateProductId(productId)){
+                       if(!Validation.validateProductId(productId)){
                            throw new Exception("Invalid Product Id");
                        }
                        System.out.print("Enter Order Id: ");
@@ -64,10 +66,11 @@ public class Main {
                        Product p1 = ps.findById(productId);
                        OrderDetail od1 = new OrderDetail(detail_id, o1.getId(), p1.getId(), quantity, Status.PENDING);
 
-                       OrderThread ot = new OrderThread(o1,p1, od1);
-                       ProductThread pt = new ProductThread(o1,p1, od1);
-                       OrderDetailThread odt = new OrderDetailThread(o1,p1, od1);
-                       StatusUpdate sp = new StatusUpdate(o1,p1,od1);
+                       OrderThread ot = new OrderThread(o1, p1, od1);
+                       ProductThread pt = new ProductThread(o1, p1, od1);
+                       OrderDetailThread odt = new OrderDetailThread(o1, p1, od1);
+                       StatusUpdate sp = new StatusUpdate(o1, p1, od1);
+
                        ot.orders = orders;
                        odt.orderDetails = orderDetails;
 
